@@ -1,38 +1,83 @@
 
 /* ==UserStyle==
 @name           for.rims-web 物件検索画面カスタム
-@namespace      github.com/openstyles/stylus
+@namespace      https://github.com/rise-planning/rims-web-custom
 @version        1.0.0
-@description    物件検索画面の社内広告取扱を色分け
+@description    物件検索結果の社内広告取扱を色分け
+@updateURL      https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/search.user.css
+@downloadURL    https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/search.user.css
 ==/UserStyle== */
 
 @-moz-document url-prefix("https://for.rims-web.com/admin.php/REMSTLstSch") {
 
     /* ==========================================
-       社内広告取扱：プルダウン内の色分け
+       【検索結果】社内広告取扱
+       物件ごとにIDが異なるためnameで指定
        ========================================== */
 
-    /* ポータル不可：薄い赤 */
-    #r_holdadvertise_serach option[value="13"] {
-        background-color: #ffd6d6 !important;
+    /* Chromeで選択肢ごとの背景色を有効にする */
+    select[name="r_holdadvertise"],
+    select[name="r_holdadvertise"]::picker(select) {
+        appearance: base-select !important;
+    }
+
+    /* プルダウン内の背景 */
+    select[name="r_holdadvertise"]::picker(select) {
+        background-color: #ffffff !important;
+        border: 1px solid #cccccc !important;
+        border-radius: 4px !important;
+        padding: 4px !important;
+    }
+
+    /* 選択肢共通 */
+    select[name="r_holdadvertise"] option {
         color: #000000 !important;
+        padding: 6px 10px !important;
+    }
+
+    /* ポータル不可：薄い赤 */
+    select[name="r_holdadvertise"] option[value="13"] {
+        background-color: #ffd6d6 !important;
     }
 
     /* 広告すべて可：薄い青 */
-    #r_holdadvertise_serach option[value="11"] {
+    select[name="r_holdadvertise"] option[value="11"] {
         background-color: #d6eaff !important;
-        color: #000000 !important;
     }
 
-    /* 自社HPのみ・自社HP（一般＋会員）のみ可・
-       自社HP（会員）のみ可・会員限定：薄い黄色 */
-    #r_holdadvertise_serach option:is(
+    /* 自社HP関連・会員限定：薄い黄色 */
+    select[name="r_holdadvertise"] option:is(
         [value="95"],
+        [value="96"],
         [value="2"],
-        [value="12"],
-        [value="96"]
+        [value="12"]
     ) {
         background-color: #fff9c4 !important;
-        color: #000000 !important;
+    }
+
+    /* ==========================================
+       選択後のプルダウン本体の色分け
+       ========================================== */
+
+    /* ポータル不可：薄い赤 */
+    select[name="r_holdadvertise"]:has(option[value="13"]:checked) {
+        background-color: #ffd6d6 !important;
+    }
+
+    /* 広告すべて可：薄い青 */
+    select[name="r_holdadvertise"]:has(option[value="11"]:checked) {
+        background-color: #d6eaff !important;
+    }
+
+    /* 自社HP関連・会員限定：薄い黄色 */
+    select[name="r_holdadvertise"]:has(
+        option:is(
+            [value="95"],
+            [value="96"],
+            [value="2"],
+            [value="12"]
+        ):checked
+    ) {
+        background-color: #fff9c4 !important;
     }
 }
