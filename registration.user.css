@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           for.rims-web 管理画面カスタム（共通＋区分＋一棟）
 @namespace      https://github.com/rise-planning/rims-web-custom
-@version        2.5.1
+@version        2.5.2
 @description    共通ルールを1か所で管理。元の項目名コメントを復元し、区分・一棟の差分を明示
 @updateURL      https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/registration.user.css
 @downloadURL    https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/registration.user.css
@@ -395,7 +395,7 @@ html:has(meta[name="title"][content="物件詳細：住宅以外の建物全部"
 
 /* ========== 【区分専用】 ========== */
 /* 区分でのみ色付けする項目・区分専用の注意書き */
-body:has(#remst_r_kind option[value="2"]:checked) {
+html:has(meta[name="title"][content="物件詳細：マンション"]) {
         #remst_r_mngtype,
         #remst_r_mngtype2,
         #remst_r_managefee,
@@ -435,7 +435,7 @@ body:has(#remst_r_kind option[value="2"]:checked) {
 
 /* ========== 【一棟専用】 ========== */
 /* 一棟でのみ色付けする項目・一棟専用の注意書き */
-body:has(#remst_r_kind option[value="11"]:checked) {
+html:has(meta[name="title"][content="物件詳細：住宅以外の建物全部"]) {
         /* 物件種別 */
         #remst_r_kind,
         /* 新築・中古区分 */
