@@ -1,0 +1,38 @@
+
+/* ==UserStyle==
+@name           for.rims-web 物件検索画面カスタム
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    物件検索画面の社内広告取扱を色分け
+==/UserStyle== */
+
+@-moz-document url-prefix("https://for.rims-web.com/admin.php/REMSTLstSch") {
+
+    /* ==========================================
+       社内広告取扱：プルダウン内の色分け
+       ========================================== */
+
+    /* ポータル不可：薄い赤 */
+    #r_holdadvertise_serach option[value="13"] {
+        background-color: #ffd6d6 !important;
+        color: #000000 !important;
+    }
+
+    /* 広告すべて可：薄い青 */
+    #r_holdadvertise_serach option[value="11"] {
+        background-color: #d6eaff !important;
+        color: #000000 !important;
+    }
+
+    /* 自社HPのみ・自社HP（一般＋会員）のみ可・
+       自社HP（会員）のみ可・会員限定：薄い黄色 */
+    #r_holdadvertise_serach option:is(
+        [value="95"],
+        [value="2"],
+        [value="12"],
+        [value="96"]
+    ) {
+        background-color: #fff9c4 !important;
+        color: #000000 !important;
+    }
+}
