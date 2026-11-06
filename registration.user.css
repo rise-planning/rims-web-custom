@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           for.rims-web 管理画面カスタム（共通＋区分＋一棟）
 @namespace      https://github.com/rise-planning/rims-web-custom
-@version        2.5.2
+@version        2.5.3
 @description    共通ルールを1か所で管理。元の項目名コメントを復元し、区分・一棟の差分を明示
 @updateURL      https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/registration.user.css
 @downloadURL    https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/registration.user.css
@@ -42,6 +42,8 @@ html:has(meta[name="title"][content="物件詳細：住宅以外の建物全部"
         #remst_r_address3,
         /* 徒歩分数1 */
         #remst_r_walk1,
+        /* 徒歩分数2 */
+        #remst_r_walk2,
         /* 担当者など */
         #remst_r_holdcharge,
         /* 土地権利 */
@@ -79,6 +81,8 @@ html:has(meta[name="title"][content="物件詳細：住宅以外の建物全部"
         #remst_r_catch_box,
         /* 管理用メモ */
         #remst_r_rem_staff {
+            
+
         background-color: #82c99b !important;
         color: #000000 !important;
     }
@@ -112,10 +116,12 @@ html:has(meta[name="title"][content="物件詳細：住宅以外の建物全部"
         /* 交通1：バス停から徒歩 */
         #remst_r_train_buswalk1,
         /* 交通2：バス停から徒歩 */
-        #remst_r_train_buswalk2 {
-        background-color: #fff9c4 !important;
-        color: #000000 !important;
-    }
+        #remst_r_train_buswalk2,
+        /* 健美家：登録会員のみに公開 */
+        label:has(> #remst_z24_member_status_member) {
+            background-color: #fff9c4 !important;
+            color: #000000 !important;
+        }
 
         /* 住所から緯度経度を設定 */
         input[value="住所から緯度経度を設定"][onclick*="geocoding_open"],
