@@ -9,8 +9,8 @@
 
 @-moz-document url-prefix("https://for.rims-web.com/admin.php/REINSupload") {
     /* ==========================================
-    【1】緑色に塗りつぶす項目（一括指定）
-    ========================================== */
+       【1】緑色にする項目
+       ========================================== */
 
     /* 営業所 */
     select[name="office_id"],
@@ -35,10 +35,9 @@
         background-color: #82c99b !important;
         color: #000000 !important;
     }
-
     /* ==========================================
-    【2】チェックボックスを緑色にする
-    ========================================== */
+       【2】緑色にするチェックボックス
+       ========================================== */
 
     /* 元付業者名 */
     input[type="checkbox"][name="double_check_field[]"][value="r_holdoffice"],
@@ -47,10 +46,9 @@
     input[type="checkbox"][name="double_check_field[]"][value="r_id"] {
         accent-color: #82c99b !important;
     }
-
     /* ==========================================
-    【3】レインズデータ上書可否
-    ========================================== */
+       【3】緑色にする選択項目（上書き設定）
+       ========================================== */
 
     /* 今回のみ上書きし、次回以降上書きしない */
     label:has(input[type="radio"][value="2"]) {
@@ -66,24 +64,22 @@
     label.type_select:has(> #reins_type2) {
         background-color: transparent !important;
     }
-
     /* ==========================================
-    【4】入力不要チェック欄（パステルイエロー）
-    ========================================== */
+       【4】黄色にする項目
+       ========================================== */
 
     /* 健美家・いえらぶ */
     td:has(> #portal24):has(> #portal21) {
         background: linear-gradient(
-        to right,
-        #fff9c4 0 180px,
-        transparent 180px
+            to right,
+            #fff9c4 0 180px,
+            transparent 180px
         ) !important;
     }
-
     /* ==========================================
-    【5】ベタ塗りするアクションボタン（一括指定）
-    ========================================== */
-
+       【5】オレンジ色にするボタン
+       ========================================== */
+    
     /* -- 背景マイルドオレンジ(#fb8c00) × 文字黒(#000000) -- */
     /* 一括解除 */          button[onclick="select_false();"],
     /* 仮アップロード開始 */ input[name="UPLOAD"][value="仮アップロード開始"] {
@@ -91,16 +87,15 @@
         color: #000000 !important;
         border: 1px solid #fb8c00 !important;
     }
-
     /* ==========================================
-    【6】ポップアップ（注意書き）設定
-    ========================================== */
+       【6】ポップアップ（注意書き）
+       ========================================== */
 
     /* ① 営業所：プルダウンにカーソルを合わせる */
-    td:has(> select[name="office_id"]) {
+        td:has(> select[name="office_id"]) {
         position: relative !important;
     }
-
+    
     select[name="office_id"] {
         cursor: help !important;
     }
@@ -151,11 +146,11 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
         pointer-events: none !important;
     }
-    /* 一括解除ボタン：注意書き */
+        /* 一括解除ボタン：注意書き */
     button[onclick="select_false();"] {
         position: relative !important;
         cursor: help !important;
-    }
+        }
 
     /* 一括解除ボタン：ポップアップの基準位置 */
     td.ititle:has(> button[onclick="select_false();"]) {
@@ -187,10 +182,9 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
         pointer-events: none !important;
     }
-
     /* ==========================================
-    ③ 物件公開・ポータル送信・収益物件フラグ
-    ========================================== */
+       ③ 物件公開・ポータル送信・収益物件フラグ
+       ========================================== */
 
     /* プルダウンにカーソルを合わせる */
     td:has(> select[name="r_open"]),
@@ -229,7 +223,7 @@
     td:has(> select[name="r_open"]:hover)::after {
         content: "「非公開」を選択する" !important;
     }
-
+    
     /* ③-2 ポータル送信 */
     td:has(> select[name="r_np"]:hover)::after {
         content: "「可」を選択する" !important;
