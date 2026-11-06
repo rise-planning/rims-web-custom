@@ -1,0 +1,247 @@
+/* ==UserStyle==
+@name           for.rims-web レインズアップロード画面カスタム
+@namespace      https://github.com/rise-planning/rims-web-custom
+@version        1.0.0
+@description    レインズアップロード画面の色分け・操作ボタン・注意書き
+@updateURL      https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/reins-upload.user.css
+@downloadURL    https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/reins-upload.user.css
+==/UserStyle== */
+
+@-moz-document url-prefix("https://for.rims-web.com/admin.php/REINSupload") {
+/* ==========================================
+       【1】緑色に塗りつぶす項目（一括指定）
+       ========================================== */
+
+    /* 営業所 */
+    select[name="office_id"],
+
+    /* 営業課 */
+    select[name="division_id"],
+
+    /* 物件公開 */
+    select[name="r_open"],
+
+    /* ポータル送信 */
+    select[name="r_np"],
+
+    /* 収益物件フラグ */
+    select[name="r_inv_flag"],
+
+    /* 自社管理番号設定 */
+    td:has(> input[name="rs_x_id_set"]),
+
+    /* レインズデータによる上書不可 */
+    td:has(> input[name="reins_NoUpload"]) {
+        background-color: #82c99b !important;
+        color: #000000 !important;
+    }
+
+
+    /* ==========================================
+       【2】チェックボックスを緑色にする
+       ========================================== */
+
+    /* 元付業者名 */
+    input[type="checkbox"][name="double_check_field[]"][value="r_holdoffice"],
+
+    /* レインズID */
+    input[type="checkbox"][name="double_check_field[]"][value="r_id"] {
+        accent-color: #82c99b !important;
+    }
+
+
+    /* ==========================================
+       【3】レインズデータ上書可否
+       ========================================== */
+
+    /* 今回のみ上書きし、次回以降上書きしない */
+    label:has(input[type="radio"][value="2"]) {
+        background-color: #82c99b !important;
+    }
+
+    /* 価格を：上書きしない */
+    label:has(> #price_nooverwrite) {
+        background-color: #82c99b !important;
+    }
+
+    /* 物件詳細から取り込み：緑色を除外 */
+    label.type_select:has(> #reins_type2) {
+        background-color: transparent !important;
+    }
+
+
+    /* ==========================================
+       【4】入力不要チェック欄（パステルイエロー）
+       ========================================== */
+
+    /* 健美家・いえらぶ */
+    td:has(> #portal24):has(> #portal21) {
+        background: linear-gradient(
+            to right,
+            #fff9c4 0 180px,
+            transparent 180px
+        ) !important;
+    }
+
+    /* ==========================================
+      【5】ベタ塗りするアクションボタン（一括指定）
+       ========================================== */
+    
+    /* -- 背景マイルドオレンジ(#fb8c00) × 文字黒(#000000) -- */
+    /* 一括解除 */          button[onclick="select_false();"],
+    /* 仮アップロード開始 */ input[name="UPLOAD"][value="仮アップロード開始"] {
+        background-color: #fb8c00 !important;
+        color: #000000 !important;
+        border: 1px solid #fb8c00 !important;
+    }
+
+
+    /* ==========================================
+       【6】ポップアップ（注意書き）設定
+       ========================================== */
+
+    /* ① 営業所：プルダウンにカーソルを合わせる */
+        td:has(> select[name="office_id"]) {
+        position: relative !important;
+    }
+    
+    select[name="office_id"] {
+        cursor: help !important;
+    }
+
+    /* ① 営業所：ポップアップの見た目と文章 */
+    td:has(> select[name="office_id"]:hover)::after {
+        content: "本社を選択する" !important;
+        position: absolute !important;
+        bottom: 100% !important;
+        left: 0 !important;
+        background-color: #ffffff !important;
+        color: #ff0000 !important;
+        padding: 4px 8px !important;
+        border: 1px solid #ff0000 !important;
+        border-radius: 4px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        z-index: 9999 !important;
+        margin-bottom: 6px !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+        pointer-events: none !important;
+    }
+
+    /* ② 営業課：プルダウンにカーソルを合わせる */
+    td:has(> select[name="division_id"]) {
+        position: relative !important;
+    }
+
+    select[name="division_id"] {
+        cursor: help !important;
+    }
+
+    /* ② 営業課：ポップアップの見た目と文章 */
+    td:has(> select[name="division_id"]:hover)::after {
+        content: "区分且つ2000万円以上のみ「上位物件」、その他は「投資事業」を選択する" !important;
+        position: absolute !important;
+        bottom: 100% !important;
+        left: 0 !important;
+        background-color: #ffffff !important;
+        color: #ff0000 !important;
+        padding: 4px 8px !important;
+        border: 1px solid #ff0000 !important;
+        border-radius: 4px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        z-index: 9999 !important;
+        margin-bottom: 6px !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+        pointer-events: none !important;
+    }
+
+    /* ==========================================
+       ③ 物件公開・ポータル送信・収益物件フラグ
+       ========================================== */
+
+    /* プルダウンにカーソルを合わせる */
+    td:has(> select[name="r_open"]),
+    td:has(> select[name="r_np"]),
+    td:has(> select[name="r_inv_flag"]) {
+        position: relative !important;
+    }
+
+    select[name="r_open"],
+    select[name="r_np"],
+    select[name="r_inv_flag"] {
+        cursor: help !important;
+    }
+
+    /* ポップアップ共通デザイン */
+    td:has(> select[name="r_open"]:hover)::after,
+    td:has(> select[name="r_np"]:hover)::after,
+    td:has(> select[name="r_inv_flag"]:hover)::after {
+        position: absolute !important;
+        bottom: 100% !important;
+        left: 0 !important;
+        background-color: #ffffff !important;
+        color: #ff0000 !important;
+        padding: 4px 8px !important;
+        border: 1px solid #ff0000 !important;
+        border-radius: 4px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        z-index: 9999 !important;
+        margin-bottom: 6px !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+        pointer-events: none !important;
+    }
+
+    /* ③-1 物件公開 */
+    td:has(> select[name="r_open"]:hover)::after {
+        content: "「非公開」を選択する" !important;
+    }
+    
+    /* ③-2 ポータル送信 */
+    td:has(> select[name="r_np"]:hover)::after {
+        content: "「可」を選択する" !important;
+    }
+
+    /* ③-3 収益物件フラグ */
+    td:has(> select[name="r_inv_flag"]:hover)::after {
+        content: "「ON」を選択する" !important;
+    }
+
+    /* ④ 健美家・いえらぶ（黄色い180pxの範囲） */
+
+    /* ポップアップの基準位置 */
+    td:has(> #portal24):has(> #portal21) {
+        position: relative !important;
+    }
+
+    /* 黄色い180pxの範囲をホバー対象にする */
+    td:has(> #portal24):has(> #portal21)::before {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 180px !important;
+        height: 100% !important;
+        cursor: help !important;
+    }
+
+    /* ポップアップの見た目と文章 */
+    td:has(> #portal24):has(> #portal21):hover::after {
+        content: "詳細データを入れる場合にはチェックする" !important;
+        position: absolute !important;
+        bottom: 100% !important;
+        left: 0 !important;
+        background-color: #ffffff !important;
+        color: #ff0000 !important;
+        padding: 4px 8px !important;
+        border: 1px solid #ff0000 !important;
+        border-radius: 4px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        z-index: 9999 !important;
+        margin-bottom: 6px !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+        pointer-events: none !important;
+    }
+}
