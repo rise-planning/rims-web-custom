@@ -3,7 +3,7 @@
 /* ==UserStyle==
 @name           for.rims-web 物件検索画面カスタム
 @namespace      https://github.com/rise-planning/rims-web-custom
-@version        1.0.2
+@version        1.0.3
 @description    物件検索結果の社内広告取扱を色分け
 @updateURL      https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/search.user.css
 @downloadURL    https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/search.user.css
@@ -76,6 +76,11 @@
     /* 広告すべて可：薄い青 */
     select[name="r_holdadvertise"]:has(option[value="11"]:checked) {
         background-color: #d6eaff !important;
+    }
+    /* 広告厳禁：選択後も強い赤 */
+    select[name="r_holdadvertise"]:has(option[value="1"]:checked) {
+        background-color: #ff0000 !important;
+        color: #ffffff !important;
     }
 
     /* 自社HP関連・会員限定：薄い黄色 */
