@@ -1,0 +1,515 @@
+/* ==UserStyle==
+@name           for.rims-web 管理画面カスタム（共通＋区分＋一棟）
+@namespace      https://github.com/rise-planning/rims-web-custom
+@version        2.5.0
+@description    共通ルールを1か所で管理。元の項目名コメントを復元し、区分・一棟の差分を明示
+@updateURL      https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/registration.user.css
+@downloadURL    https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/registration.user.css
+==/UserStyle== */
+
+@-moz-document url-prefix("https://for.rims-web.com/admin.php/REMSTReg/id/") {
+/* 選択されている物件種別で判別（選択肢の存在だけでは判別しない） */
+
+/* ========== 【共通】区分・一棟に共通する設定 ========== */
+/* 各セレクタの直前に、画面上の項目名を記載。色の変更は各色グループの末尾で行う。 */
+body:is(:has(#remst_r_kind option[value="2"]:checked), :has(#remst_r_kind option[value="11"]:checked)) {
+        /* 物件担当者 */
+        #remst_r_user_id,
+        /* 物件登録者 */
+        #remst_r_inputuser_id,
+        /* 物件名 */
+        #remst_r_buildname,
+        /* 総戸数 */
+        #remst_r_houses,
+        /* 価格 */
+        #remst_r_price,
+        /* 年収 */
+        #r_inv_income,
+        /* 利回り種別 */
+        #remst_r_inv_ratetype,
+        /* オーナーチェンジ */
+        #remst_r_ownerchange,
+        /* その他費用1項目 */
+        #remst_r_aftcost1,
+        /* その他費用1金額 */
+        #remst_r_aftcost1_y,
+        /* その他費用項目2 */
+        #remst_r_aftcost2,
+        /* その他費用2金額 */
+        #remst_r_aftcost2_y,
+        /* 住所3 */
+        #remst_r_address3,
+        /* 徒歩分数1 */
+        #remst_r_walk1,
+        /* 担当者など */
+        #remst_r_holdcharge,
+        /* 土地権利 */
+        #remst_r_rights,
+        /* 用途地域 */
+        #remst_r_use,
+        /* 建ぺい率 */
+        #remst_r_floorrate,
+        /* 容積率 */
+        #remst_r_capacity,
+        /* 専有面積 */
+        #remst_r_floorsize,
+        /* バルコニー向き */
+        #remst_r_balcony,
+        /* 築年月 */
+        #remst_r_builddt,
+        /* 地上階数 */
+        #remst_r_ufloor,
+        /* 地下階数 */
+        #remst_r_lfloor,
+        /* 建物構造 */
+        #remst_r_structure,
+        /* 引渡時期 */
+        #remst_r_timming,
+        /* 間取り(部屋数) */
+        #remst_r_roomnum,
+        /* 間取り(タイプ) */
+        #remst_r_roomtype,
+        td:has(> #remst_r_status),
+        /* 設備用備考 */
+        #remst_r_rem1,
+        /* キャッチコピー */
+        #remst_r_catch_top,
+        /* コメント(備考) */
+        #remst_r_catch_box,
+        /* 管理用メモ */
+        #remst_r_rem_staff {
+        background-color: #82c99b !important;
+        color: #000000 !important;
+    }
+
+        label:has(input[name="remst[r_status]"]) {
+        padding: 3px 8px !important;
+        border-radius: 4px !important;
+        display: inline-block !important;
+        margin: 2px !important;
+    }
+
+        /* 緯度 */
+        #remst_r_lat,
+        /* 経度 */
+        #remst_r_long,
+        /* 物件確認日 */
+        #remst_r_chkdate,
+        /* 利回り率 */
+        #r_inv_rate,
+        /* 交通1・2：バス停名 */
+        /* 交通1：バス停名 */
+        #remst_r_train_busstop1,
+        /* 交通2：バス停名 */
+        #remst_r_train_busstop2,
+        /* 交通1・2：バス乗車時間 */
+        /* 交通1：バス乗車時間 */
+        #remst_r_train_bus1,
+        /* 交通2：バス乗車時間 */
+        #remst_r_train_bus2,
+        /* 交通1・2：バス停から徒歩（下限） */
+        /* 交通1：バス停から徒歩 */
+        #remst_r_train_buswalk1,
+        /* 交通2：バス停から徒歩 */
+        #remst_r_train_buswalk2 {
+        background-color: #fff9c4 !important;
+        color: #000000 !important;
+    }
+
+        /* 住所から緯度経度を設定 */
+        input[value="住所から緯度経度を設定"][onclick*="geocoding_open"],
+        /* さらに交通を追加 */
+        #add_traffic_btn,
+        /* 本日 */
+        input[value="本日"][onclick*="GetToday"],
+        /* 年収から利回りを設定 */
+        input[value="年収から利回りを設定"][onclick*="rate_cal"],
+        /* キャッチコピー */
+        input[value="キャッチコピー"][onclick*="z24_r_catch_top"],
+        /* コメント(備考) */
+        input[value="コメント（備考）"][onclick*="z24_r_catch_box"],
+        /* 物件名 */
+        input[value="物件名"][onclick*="z21_r_buildname"],
+        /* キャッチコピー */
+        input[value="キャッチコピー"][onclick*="z21_r_catch_top"],
+        /* コメント(備考) */
+        input[value="コメント（備考）"][onclick*="z21_r_rem1"],
+        /* 画像一括アップロード */
+        input.bulk_apply_btn_multi_upload,    
+        /* 交通1・2：「駅名」から沿線・駅を選択 */
+        .traffic_line_station_set_btns input[type="button"][onclick*="stationSearch/"] {
+        background-color: #fb8c00 !important;
+        color: #000000 !important;
+        border: 1px solid #fb8c00 !important;
+    }
+
+        fieldset:has(#remst_r_landrenton) {
+        border: 5px solid #6C97DE !important;
+        background-color: transparent !important;
+    }
+
+        fieldset:has(#remst_r_landrenton) input[type="text"],
+        fieldset:has(#remst_r_landrenton) select {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #ccc !important;
+    }
+
+        #r_pict_54_dropzone {
+        background-color: #82c99b !important;
+        border-color: #82c99b !important;
+    }
+
+        #r_pict_54 {
+        mix-blend-mode: multiply !important;
+    }
+
+        #remst_r_inputuser_id,
+        #remst_r_buildname,
+        #remst_r_managefee,
+        #remst_r_repaircost,
+        #remst_r_landrenton,
+        #r_inv_rate,
+        #remst_r_inv_ratetype,
+        #remst_r_ownerchange,
+        #remst_r_aftcost1,
+        #remst_r_aftcost2,
+        #remst_r_address3,
+        #remst_r_lat,
+        #remst_r_chkdate,
+        #remst_r_holdcharge,
+        #remst_r_rem1,
+        #r_pict_54_dropzone {
+        cursor: help !important;
+    }
+
+        p:has(> #remst_r_inputuser_id),
+        *:has(> #remst_r_buildname),
+        span.SPRXSA_REQ:has(> #remst_r_managefee),
+        span.SPRXSA_REQ:has(> #remst_r_repaircost),
+        span.SPRXSAC_REQ:has(> #remst_r_landrenton),
+        td:has(> #r_inv_rate),
+        span:has(> #remst_r_inv_ratetype),
+        .kakaku_block:has(> #remst_r_ownerchange),
+        td:has(> #remst_r_aftcost1),
+        td:has(> #remst_r_aftcost2),
+        span.SPRXSA_REQ:has(> #remst_r_address3),
+        div:has(> #remst_r_lat),
+        span.SPRXSA_REQ:has(> #remst_r_chkdate),
+        span.SPRXSA_REQC:has(> #remst_r_holdcharge),
+        td:has(> #remst_r_rem1),
+        *:has(> #r_pict_54_dropzone) {
+        position: relative !important;
+    }
+
+        
+
+        /* 【共通】注意書きの見た目（区分・一棟ともここだけ変更） */
+        p:has(> #remst_r_inputuser_id:hover)::after,
+        *:has(> #remst_r_buildname:hover)::after,
+        span.SPRXSA_REQ:has(> #remst_r_managefee:hover)::after,
+        span.SPRXSA_REQ:has(> #remst_r_repaircost:hover)::after,
+        span.SPRXSAC_REQ:has(> #remst_r_landrenton:hover)::after,
+        td:has(> #r_inv_rate:hover)::after,
+        span:has(> #remst_r_inv_ratetype:hover)::after,
+        .kakaku_block:has(> #remst_r_ownerchange:hover)::after,
+        td:has(> #remst_r_aftcost1:hover)::after,
+        td:has(> #remst_r_aftcost2:hover)::after,
+        span.SPRXSA_REQ:has(> #remst_r_address3:hover)::after,
+        div:has(> #remst_r_lat:hover)::after,
+        span.SPRXSA_REQ:has(> #remst_r_chkdate:hover)::after,
+        span.SPRXSA_REQC:has(> #remst_r_holdcharge:hover)::after,
+        td:has(> #remst_r_rem1:hover)::after,
+        *:has(> #r_pict_54_dropzone:hover)::after,
+        span:has(> #remst_r_road:hover)::after,
+        span.SPRXSA_REQ:has(> #remst_r_roomname:hover)::after,
+        span.SPRXSA_REQC:has(> #remst_r_buildconfirm:hover)::after,
+        td:has(> #remst_r_roomtype_other:hover)::after,
+        label:has(> #remst_z24_member_status_member):hover::after,
+        label:has(> #remst_z24_member_status_internal):hover::after {
+        position: absolute !important;
+        bottom: 100% !important;
+        left: 0 !important;
+        background-color: #ffffff !important;
+        color: #ff0000 !important;
+        padding: 4px 8px !important;
+        border: 1px solid #ff0000 !important;
+        border-radius: 4px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        z-index: 9999 !important;
+        margin-bottom: 6px !important;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+        pointer-events: none !important;
+    }
+
+        p:has(> #remst_r_inputuser_id:hover)::after {
+        content: "入力者の名前を選択する" !important;
+    }
+
+        *:has(> #remst_r_buildname:hover)::after {
+        content: "？の環境依存文字はないか、仲介手数料などマンション名以外の表示がないか確認" !important;
+    }
+
+        span.SPRXSA_REQ:has(> #remst_r_managefee:hover)::after,
+        span.SPRXSA_REQ:has(> #remst_r_repaircost:hover)::after {
+        content: "管理費・若しくは修繕積立金どちらかしか記載のない時は、管理費に合計金額を入力して、修繕積立金は0と入力する" !important;
+    }
+
+        span.SPRXSAC_REQ:has(> #remst_r_landrenton:hover)::after {
+        content: "土地タブの土地権利が「所有権」以外の時のみ入力" !important;
+    }
+
+        td:has(> #r_inv_rate:hover)::after {
+        content: "手入力をせず、左にある「年収から利回りを設定」ボタンを押して設定する" !important;
+    }
+
+        td:has(> #r_inv_rate:hover)::after {
+        right: 0 !important;
+        left: auto !important;
+    }
+
+        span:has(> #remst_r_inv_ratetype:hover)::after {
+        content: "基本的に想定とする。" !important;
+    }
+
+        span:has(> #remst_r_inv_ratetype:hover)::after {
+        right: 0 !important;
+        left: auto !important;
+    }
+
+        .kakaku_block:has(> #remst_r_ownerchange:hover)::after {
+        content: "賃貸中の場合のみ、オーナーチェンジ「有」にする" !important;
+    }
+
+        .kakaku_block:has(> #remst_r_ownerchange:hover)::after {
+        left: auto !important;
+    }
+
+        td:has(> #remst_r_aftcost1:hover)::after,
+        td:has(> #remst_r_aftcost2:hover)::after {
+        content: "その他費用がある場合に記入する" !important;
+    }
+
+        span.SPRXSA_REQ:has(> #remst_r_address3:hover)::after {
+        content: "住所末尾がわからない場合は、ネットで検索をして入力する" !important;
+    }
+
+        div:has(> #remst_r_lat:hover)::after {
+        content: "手入力をせず、左にある「住所から緯度経度を設定」ボタンを押して設定する" !important;
+    }
+
+        div:has(> #remst_r_lat:hover)::after {
+        top: 0 !important;
+        bottom: auto !important;
+        margin-top: -35px !important;
+        margin-bottom: 0 !important;
+    }
+
+        span.SPRXSA_REQ:has(> #remst_r_chkdate:hover)::after {
+        content: "手入力をせず、右にある「本日」ボタンを押して設定する" !important;
+    }
+
+        span.SPRXSA_REQ:has(> #remst_r_chkdate:hover)::after {
+        right: 0 !important;
+        left: auto !important;
+    }
+
+        span.SPRXSA_REQC:has(> #remst_r_holdcharge:hover)::after {
+        content: "入力がない場合は「担当」と記入する" !important;
+    }
+
+        td:has(> #remst_r_rem1:hover)::after {
+        content: "記載の文字を確認して消す。営業に必要な事項記載があれば、管理用メモに転記する。例）心理的瑕疵、再建築不可等" !important;
+    }
+
+        td:has(> #remst_r_rem1:hover)::after {
+        left: auto !important;
+        white-space: normal !important;
+        width: max-content !important;
+        max-width: 350px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* ==========================================
+       【共通】画像一括アップロードの注意書き
+       ========================================== */
+
+        /* 画像一括アップロード */
+    input.bulk_apply_btn_multi_upload { cursor: help !important; }
+
+    /* ポップアップの基準位置 */
+    div:has(> input.bulk_apply_btn_multi_upload) {
+        position: relative !important;
+        overflow: visible !important;
+    }
+
+    /* ホバー時の注意書き */
+    div:has(> input.bulk_apply_btn_multi_upload:hover)::after {
+        content: "画像の並び順は建物の外から歩いて中に入るような並びにする※但し、画像3には間取りを登録する" !important;
+        position: absolute !important;
+        top: 100% !important;
+        bottom: auto !important;
+        left: 0 !important;
+        z-index: 99999 !important;
+
+        background: #ffffff !important;
+        color: #ff0000 !important;
+        border: 1px solid #ff0000 !important;
+        border-radius: 4px !important;
+        padding: 6px 10px !important;
+
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        margin-top: 6px !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
+        pointer-events: none !important;
+    }
+
+        *:has(> #r_pict_54_dropzone:hover)::after {
+        content: "販売図面を入れる" !important;
+    }
+
+        span:has(> #remst_r_inv_ratetype) {
+        display: inline-block !important;
+        cursor: help !important;
+    }
+
+        label:has(> #remst_z24_member_status_member),
+        label:has(> #remst_z24_member_status_internal) {
+        position: relative !important;
+        cursor: help !important;
+    }
+
+        label:has(> #remst_z24_member_status_member):hover::after {
+        content: "会員限定の場合に使用（物件登録会員限定）" !important;
+    }
+
+        label:has(> #remst_z24_member_status_internal):hover::after {
+        content: "非掲載＋提案メール（営業用）" !important;
+    }
+
+        
+}
+
+/* ========== 【区分専用】 ========== */
+/* 区分でのみ色付けする項目・区分専用の注意書き */
+body:has(#remst_r_kind option[value="2"]:checked) {
+        #remst_r_mngtype,
+        #remst_r_mngtype2,
+        #remst_r_managefee,
+        #remst_r_repaircost,
+        /* 接道状況／幅員（区分） */
+        #remst_r_road,
+        /* 部屋番号（区分） */
+        #remst_r_roomname,
+        /* 所在階（区分） */
+        #remst_r_floor {
+        background-color: #82c99b !important;
+        color: #000000 !important;
+    }
+
+        /* 接道状況／幅員（区分） */
+        #remst_r_road,
+        /* 部屋番号（区分） */
+        #remst_r_roomname {
+        cursor: help !important;
+    }
+
+        span:has(> #remst_r_road),
+        span.SPRXSA_REQ:has(> #remst_r_roomname) {
+        position: relative !important;
+    }
+
+        
+
+        span:has(> #remst_r_road:hover)::after {
+        content: "不明の場合は「0」と記入する" !important;
+    }
+
+        span.SPRXSA_REQ:has(> #remst_r_roomname:hover)::after {
+        content: "部屋番号不明の場合は、「階数+F」と記入する" !important;
+    }
+}
+
+/* ========== 【一棟専用】 ========== */
+/* 一棟でのみ色付けする項目・一棟専用の注意書き */
+body:has(#remst_r_kind option[value="11"]:checked) {
+        /* 物件種別 */
+        #remst_r_kind,
+        /* 新築・中古区分 */
+        #remst_r_brandnew,
+        /* 都市計画 */
+        #remst_r_cityplan,
+        /* 用途地域2 */
+        #remst_r_use1,
+        /* 建ぺい率2 */
+        #remst_r_floorrate1,
+        /* 容積率2 */
+        #remst_r_capacity1,
+        /* 土地面積 */
+        #remst_r_land,
+        /* 地目 */
+        #remst_r_landuse,
+        /* セットバック(未選択のみ) */
+        label:has(input[name="remst[r_setback_type]"][value=""]),
+        /* 私道負担(未選択のみ) */
+        label:has(input[name="remst[r_privateroad]"][value=""]),
+        /* 接道(内側のテーブル全体をベタ塗り) */
+        table:has(.r_road_td),
+        table:has(.r_road_td) th,
+        /* 接道(内側のテーブル全体をベタ塗り) */
+        table:has(.r_road_td) td,
+        /* 建築確認番号（一棟） */
+        #remst_r_buildconfirm,
+        /* 間取り(戸数) */
+        #remst_r_room_buy_num,
+        /* その他間取り（一棟） */
+        #remst_r_roomtype_other {
+        background-color: #82c99b !important;
+        color: #000000 !important;
+    }
+
+        /* セットバック(未選択のみ) */
+        label:has(input[name="remst[r_setback_type]"][value=""]),
+        /* 私道負担(未選択のみ) */
+        label:has(input[name="remst[r_privateroad]"][value=""]) {
+        padding: 3px 8px !important;
+        border-radius: 4px !important;
+        display: inline-block !important;
+        margin: 2px !important;
+    }
+
+        /* 専有面積 最小 */
+        #remst_r_proprietary_size_min,
+        /* 専有面積 最大 */
+        #remst_r_proprietary_size_max {
+        background-color: #fff9c4 !important;
+        color: #000000 !important;
+    }
+
+        #remst_r_buildconfirm,
+        #remst_r_roomtype_other {
+        cursor: help !important;
+    }
+
+        td:has(> #remst_r_roomtype_other),
+        span.SPRXSA_REQC:has(> #remst_r_buildconfirm) {
+        position: relative !important;
+    }
+
+        
+
+        span.SPRXSA_REQC:has(> #remst_r_buildconfirm:hover)::after {
+        content: "新築の場合は必須" !important;
+    }
+
+        td:has(> #remst_r_roomtype_other:hover)::after {
+        content: "間取りが複数ある場合は、ここで1つにまとめて記載する" !important;
+    }
+
+        #remst_r_road {
+        display: none !important;
+    }
+}
+}
