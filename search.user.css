@@ -3,7 +3,7 @@
 /* ==UserStyle==
 @name           for.rims-web 物件検索画面カスタム
 @namespace      https://github.com/rise-planning/rims-web-custom
-@version        1.0.1
+@version        1.0.2
 @description    物件検索結果の社内広告取扱を色分け
 @updateURL      https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/search.user.css
 @downloadURL    https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/search.user.css
@@ -80,5 +80,32 @@
         ):checked
     ) {
         background-color: #fff9c4 !important;
+    }
+    /* 自社HP：色なし */
+    select[name="r_holdadvertise"] option[value="2"],
+    select[name="r_holdadvertise"] option[value="12"] {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    /* 広告承諾書要：黄色 */
+    select[name="r_holdadvertise"] option[value="6"] {
+        background-color: #fff9c4 !important;
+        color: #000000 !important;
+    }
+
+    /* 広告厳禁：強い赤 */
+    select[name="r_holdadvertise"] option[value="1"] {
+        background-color: #ff0000 !important;
+        color: #ffffff !important;
+    }
+    /* 社内広告取扱：広告承諾書要を選択中は黄色 */
+    select[name="r_holdadvertise"]:has(option[value="6"]:checked) {
+        background-color: #fff9c4 !important;
+        color: #000000 !important;
+    }
+    /* 社内広告取扱：プルダウンの横幅を確保 */
+    select[name="r_holdadvertise"] {
+        min-width: 150px !important;
     }
 }
