@@ -1,3 +1,5 @@
+
+
 /* ==UserStyle==
 @name           for.rims-web 物件検索画面カスタム
 @namespace      https://github.com/rise-planning/rims-web-custom
@@ -10,9 +12,13 @@
 @-moz-document url-prefix("https://for.rims-web.com/admin.php/REMSTLstSch") {
 
     /* ==========================================
-    【検索結果】社内広告取扱
-    物件ごとにIDが異なるためnameで指定
-    ========================================== */
+       【検索結果】社内広告取扱
+       物件ごとにIDが異なるためnameで指定
+       ========================================== */
+
+    /* ==========================================
+       【1】プルダウンの共通表示設定
+       ========================================== */
 
     /* Chromeで選択肢ごとの背景色を有効にする */
     select[name="r_holdadvertise"],
@@ -34,6 +40,10 @@
         padding: 6px 10px !important;
     }
 
+    /* ==========================================
+       【2】選択肢の色分け（赤・青・黄色）
+       ========================================== */
+
     /* ポータル不可：薄い赤 */
     select[name="r_holdadvertise"] option[value="13"] {
         background-color: #ffd6d6 !important;
@@ -46,17 +56,17 @@
 
     /* 自社HP関連・会員限定：薄い黄色 */
     select[name="r_holdadvertise"] option:is(
-    [value="95"],
-    [value="96"],
-    [value="2"],
-    [value="12"]
+        [value="95"],
+        [value="96"],
+        [value="2"],
+        [value="12"]
     ) {
         background-color: #fff9c4 !important;
     }
 
     /* ==========================================
-    選択後のプルダウン本体の色分け
-    ========================================== */
+       【3】選択後のプルダウン本体の色分け
+       ========================================== */
 
     /* ポータル不可：薄い赤 */
     select[name="r_holdadvertise"]:has(option[value="13"]:checked) {
@@ -70,15 +80,19 @@
 
     /* 自社HP関連・会員限定：薄い黄色 */
     select[name="r_holdadvertise"]:has(
-    option:is(
-    [value="95"],
-    [value="96"],
-    [value="2"],
-    [value="12"]
-    ):checked
+        option:is(
+            [value="95"],
+            [value="96"],
+            [value="2"],
+            [value="12"]
+        ):checked
     ) {
         background-color: #fff9c4 !important;
     }
+    /* ==========================================
+       【4】選択肢の追加設定（色なし・黄色・強い赤）
+       ========================================== */
+
     /* 自社HP：色なし */
     select[name="r_holdadvertise"] option[value="2"],
     select[name="r_holdadvertise"] option[value="12"] {
@@ -102,6 +116,10 @@
         background-color: #fff9c4 !important;
         color: #000000 !important;
     }
+    /* ==========================================
+       【5】プルダウンの横幅
+       ========================================== */
+
     /* 社内広告取扱：プルダウンの横幅を確保 */
     select[name="r_holdadvertise"] {
         min-width: 150px !important;
