@@ -1,14 +1,14 @@
 /* ==UserStyle==
 @name           for.rims-web レインズアップロード画面カスタム
 @namespace      https://github.com/rise-planning/rims-web-custom
-@version        1.0.0
+@version        1.0.1
 @description    レインズアップロード画面の色分け・操作ボタン・注意書き
 @updateURL      https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/reins-upload.user.css
 @downloadURL    https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/reins-upload.user.css
 ==/UserStyle== */
 
 @-moz-document url-prefix("https://for.rims-web.com/admin.php/REINSupload") {
-/* ==========================================
+       /* ==========================================
        【1】緑色に塗りつぶす項目（一括指定）
        ========================================== */
 
