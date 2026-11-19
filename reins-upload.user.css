@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           for.rims-web レインズアップロード画面カスタム
 @namespace      https://github.com/rise-planning/rims-web-custom
-@version        1.0.2
+@version        1.0.3
 @description    レインズアップロード画面の色分け・操作ボタン・注意書き
 @updateURL      https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/reins-upload.user.css
 @downloadURL    https://raw.githubusercontent.com/rise-planning/rims-web-custom/main/reins-upload.user.css
@@ -242,7 +242,7 @@
     }
 
     /* 黄色い180pxの範囲をホバー対象にする */
-    td:has(> #portal24):has(> #portal21)::before {
+    /*td:has(> #portal24):has(> #portal21)::before {
         content: "" !important;
         position: absolute !important;
         top: 0 !important;
@@ -250,7 +250,7 @@
         width: 180px !important;
         height: 100% !important;
         cursor: help !important;
-    }
+    }*/
 
     /* ポップアップの見た目と文章 */
     td:has(> #portal24):has(> #portal21):hover::after {
